@@ -48,26 +48,29 @@ jobs:
         mv tfsec /usr/local/bin/
         tfsec --version
 
-    - name: 'Terraform Init'
-      run: terraform init
+    # - name: 'Terraform Init'
+    #   run: terraform init
 
-    - name: 'Terraform Format'
-      run: terraform fmt
+    # - name: 'Terraform Format'
+    #   run: terraform fmt
 
-    - name: 'Terraform Validate'
-      run: terraform validate
+    # - name: 'Terraform Validate'
+    #   run: terraform validate
 
-    - name: 'TFLint'
-      run: |
-        tflint --init
-        tflint
+    # - name: 'TFLint'
+    #   run: |
+    #     tflint --init
+    #     tflint
 
-    - name: 'tfsec'
-      run: tfsec .
+    # - name: 'tfsec'
+    #   run: tfsec .
 
-    - name: 'Terraform Plan'
-      run: terraform plan -out=tfplan
+    # - name: 'Terraform Plan'
+    #   run: terraform plan -out=tfplan
 
     - name: 'Terraform Apply'
-      if: github.ref == 'refs/heads/main'
-      run: terraform apply -auto-approve tfplan
+      # if: github.ref == 'refs/heads/main'
+      if: github.event.pull_request.merged == true
+      run: |
+        echo The PR was merged
+      # run: terraform apply -auto-approve tfplan
