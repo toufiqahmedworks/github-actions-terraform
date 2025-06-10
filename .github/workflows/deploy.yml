@@ -48,8 +48,8 @@ jobs:
         mv tfsec /usr/local/bin/
         tfsec --version
 
-    - name: 'Terraform Init'
-      run: terraform init
+    # - name: 'Terraform Init'
+    #   run: terraform init
 
     - name: 'Terraform Format'
       run: terraform fmt
